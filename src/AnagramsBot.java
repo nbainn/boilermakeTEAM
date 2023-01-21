@@ -15,9 +15,9 @@ public class AnagramsBot {
                 System.out.println("Please enter valid input.");
             }
         } while (input.length() != 7 || input.contains(" "));
-        String[] letters = new String[7];
+        String[] finalLetters = new String[7];
         for (int i = 0; i < 7; i++) {
-            letters[i] = String.valueOf(input.charAt(i));
+            finalLetters[i] = String.valueOf(input.charAt(i));
         }
         ArrayList<String> validWords = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("words.txt"))) {
@@ -31,16 +31,30 @@ public class AnagramsBot {
         }
 
         ArrayList<String> finalWords = new ArrayList<>();
+        String[] letters = finalLetters;
         int count = 0;
+        int count1 = 0;
         for (int i = 0; i < validWords.size(); i++) {
             for (int j = 0; j < validWords.get(i).length(); j++) {
-                if (input.contains(validWords.get(i).substring(j, j+1))) {
+                for (int k = 0; k < 7; k++) {
+                    if (validWords.get(i).substring(j, j+1).equals(letters[k])) {
+                        letters[k] = null;
+                        count1++;
+                        break;
+                    }
+                }
+            }
+            for (int w = 0; w < 7; w++) {
+                if (letters[w] != null) {
                     count++;
                 }
             }
-            if (count >= 3) {
+            if (count == 0 || count1 == validWords.get(i).length()){
                 finalWords.add(validWords.get(i));
             }
+            count1 = 0;
+            count = 0;
+            letters = finalLetters;
         }
         for(int k = 0; k < finalWords.size(); k++) {
             System.out.println(finalWords.get(k));
