@@ -6,8 +6,14 @@ import java.util.Scanner;
 public class AnagramsBot {
     public static void main(String[] args) {
         Scanner s = new Scanner(System.in);
-        System.out.println("Enter your 7 letters from your Anagrams game(1 string, no spaces):");
-        String input = s.nextLine();
+        String input;
+        do {
+            System.out.println("Enter your 7 letters from your Anagrams game(1 string, no spaces):");
+            input = s.nextLine();
+            if (input.length() != 7 || input.contains(" ")) {
+                System.out.println("Please enter valid input.");
+            }
+        } while (input.length() != 7 || input.contains(" "));
         String[] letters = new String[7];
         for (int i = 0; i < 7; i++) {
             letters[i] = String.valueOf(input.charAt(i));
