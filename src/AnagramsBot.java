@@ -29,30 +29,34 @@ public class AnagramsBot {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        ArrayList<String> lettersNew = new ArrayList<>();
         ArrayList<String> finalWords = new ArrayList<>();
-        String[] letters = finalLetters;
-        int count = 0;
+        //String[] letters = finalLetters;
+        for (int p = 0; p < finalLetters.length; p++) {
+            lettersNew.add(finalLetters[p]);
+        }
+        // int count = 0;
         int count1 = 0;
         for (int i = 0; i < validWords.size(); i++) {
             for (int j = 0; j < validWords.get(i).length(); j++) {
-                for (int k = 0; k < 7; k++) {
-                    if (validWords.get(i).substring(j, j+1).equals(letters[k])) {
+                for (int k = 0; k < lettersNew.size(); k++) {
+                    if (validWords.get(i).substring(j, j + 1).equals(lettersNew.get(k))) {
+                        lettersNew.remove(k);
                         count1++;
+                        break;
                     }
                 }
             }
-            for (int w = 0; w < 7; w++) {
-                if (letters[w] != null) {
-                    count++;
-                }
+            for (int l = 0; l < lettersNew.size(); l++){
+                lettersNew.remove(l);
             }
-            if (count == 0 || count1 == validWords.get(i).length()){
+            for (int p = 0; p < finalLetters.length; p++) {
+                lettersNew.add(finalLetters[p]);
+            }
+            if (count1 == validWords.get(i).length()){
                 finalWords.add(validWords.get(i));
             }
             count1 = 0;
-            count = 0;
-            letters = finalLetters;
         }
         for(int k = 0; k < finalWords.size(); k++) {
            System.out.println(finalWords.get(k));
