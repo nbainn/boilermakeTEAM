@@ -38,9 +38,7 @@ public class AnagramsBot {
             for (int j = 0; j < validWords.get(i).length(); j++) {
                 for (int k = 0; k < 7; k++) {
                     if (validWords.get(i).substring(j, j+1).equals(letters[k])) {
-                        letters[k] = null;
                         count1++;
-                        break;
                     }
                 }
             }
@@ -57,7 +55,7 @@ public class AnagramsBot {
             letters = finalLetters;
         }
         for(int k = 0; k < finalWords.size(); k++) {
-            System.out.println(finalWords.get(k));
+           System.out.println(finalWords.get(k));
         }
     }
 }
