@@ -14,9 +14,14 @@ public class AnagramsBot {
         }
         ArrayList<String> validWords = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader("words.txt"))) {
-
+            validWords = new ArrayList<>();
+            String line;
+            while ((line = br.readLine()) != null) {
+                validWords.add(line);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
 }
