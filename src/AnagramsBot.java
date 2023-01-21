@@ -23,5 +23,20 @@ public class AnagramsBot {
             e.printStackTrace();
         }
 
+        ArrayList<String> finalWords = new ArrayList<>();
+        int count = 0;
+        for (int i = 0; i < validWords.size(); i++) {
+            for (int j = 0; j < validWords.get(i).length(); j++) {
+                if (input.contains(validWords.get(i).substring(j, j + 1))) {
+                    count++;
+                }
+            }
+            if (count >= 3) {
+                finalWords.add(validWords.get(i));
+            }
+        }
+        for(int i = 0; i < finalWords.size(); i++) {
+            System.out.println(finalWords.get(i));
+        }
     }
 }
